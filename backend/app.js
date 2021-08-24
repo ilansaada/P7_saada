@@ -17,7 +17,7 @@ try {
 }
 
 
-/*-------------------------------------------Déf des CORS lien backend et frontend ------------------------------------------*/
+/*-------------------------------------------Déf des CORS lien entre backend et frontend ------------------------------------------*/
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
