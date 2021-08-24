@@ -6,7 +6,7 @@ router.post('/signup', userCtrl.signup);
 /*router.post('/login', userCtrl.login);*/
 
 
-
+console.log('route');
 
 
 
