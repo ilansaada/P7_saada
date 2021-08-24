@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const { Sequelize } = require('sequelize');
+const userRoutes = require('./routes/user');
 
 /*Création d'une instance Sequelize*/
 const sequelize = new Sequelize('groupomania', 'ILAN', 'Mysql1234ilan', {
@@ -32,5 +33,7 @@ app.use((req, res, next) => {
   });
   app.use(express.urlencoded({extended:true}));
   app.use(express.json());
+  /*déclaration des routes*/
+  app.use('/api/auth', userRoutes);
 
 module.exports = app;
