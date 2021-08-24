@@ -1,15 +1,17 @@
-const User = require('../models/User');
+const User = require('../models/user');
+const bcrypt = require('bcrypt');
+const sequelize = require('../models');
 
-exports.signup = (req, res, next) => {
-   /*validation sequelize*/ 
+exports.signup = async (req, res, next) => {
+   /*validation sequelize*/
     bcrypt.hash(req.body.password, 10)
     .then(hash => {
-        const user = User.create({
+          sequelize.User.create({
             email: req.body.email,
             password: hash,
           })
          .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
          .catch(error => res.status(400).json({ error }));
     })
-    .catch(error => res.status(500).json({ error }));
+        .catch(error => res.status(500).json({ error }));
 };
