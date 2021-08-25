@@ -4,17 +4,12 @@ const { Sequelize } = require('sequelize');
 const userRoutes = require('./routes/user');
 
 /*Création d'une instance Sequelize*/
-const sequelize = new Sequelize('groupomania', 'ILAN', 'Mysql1234ilan', {
+/*const sequelize = new Sequelize('groupomania', 'ILAN', 'Mysql1234ilan', {
   host: 'localhost',
   dialect: 'mysql'
 });
 /*Connexion*/
-try {
-  sequelize.authenticate();
-  console.log('Connection has been established successfully.');
-} catch (error) {
-  console.error('Unable to connect to the database:', error);
-}
+
 
 
 /*-------------------------------------------Déf des CORS lien entre backend et frontend ------------------------------------------*/
