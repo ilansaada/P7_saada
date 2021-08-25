@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 
 const userRoutes = require('./routes/user');
+const messageRoutes = require('./routes/message');
 
 
 /*-------------------------------------------Déf des CORS lien entre backend et frontend ------------------------------------------*/
@@ -23,5 +24,6 @@ app.use(express.json());
 
 /*déclaration des routes*/
 app.use('/api/auth', userRoutes);
+app.use('/api/message', messageRoutes);
 
 module.exports = app;
