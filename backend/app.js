@@ -23,7 +23,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
 /*déclaration des routes*/
-app.use('/api/auth', userRoutes);
+app.use('/api/user', userRoutes);
 app.use('/api/message', messageRoutes);
 
 module.exports = app;

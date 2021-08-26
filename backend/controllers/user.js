@@ -1,7 +1,7 @@
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const sequelize = require("../models");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 /*----------------------------Export de la fonction sigunp pour la création d'un Utilisateur----------------------------*/
 
 exports.signup = async (req, res, next) => {
@@ -21,48 +21,66 @@ exports.signup = async (req, res, next) => {
 /*----------------------------Export de la fonction login pour la connexion d'un utilisateur----------------------------*/
 
 exports.login = (req, res, next) => {
-  sequelize.User.findOne({ email: req.body.email} )
-  .then(user => {
-    console.log(user)/*Il pense que c'est toujours ilan@email.com*/
-    if (!user) {
-      return res.status(401).json({ error: 'Utilisateur non trouvé !' });
-    }
-    bcrypt.compare(req.body.password, user.password)
-      .then(valid => {
-        if (!valid) {
-          return res.status(401).json({ error: 'Mot de passe incorrect !' });
-        }
-        res.status(200).json({
-          userId: user.id,
-          token: jwt.sign({
-              userId: user.id },
-              'RANDOM_TOKEN_SECRET',
-              { expiresIn: '24h' }
-          )
-        });
-      })
-      .catch(error => res.status(500).json({ error }));
-  })
-  .catch(error => res.status(500).json({ error }));
-
+  console.log(req.body.email);
+  sequelize.User.findOne({ where: { email: req.body.email } })
+    .then((user) => {
+      /*Il pense que c'est toujours ilan@email.com*/
+      if (!user) {
+        return res.status(401).json({ error: "Utilisateur non trouvé !" });
+      }
+      bcrypt
+        .compare(req.body.password, user.password)
+        .then((valid) => {
+          if (!valid) {
+            return res.status(401).json({ error: "Mot de passe incorrect !" });
+          }
+          res.status(200).json({
+            userId: user.id,
+            token: jwt.sign(
+              {
+                userId: user.id,
+              },
+              "RANDOM_TOKEN_SECRET",
+              { expiresIn: "24h" }
+            ),
+          });
+        })
+        .catch((error) => res.status(500).json({ error }));
+    })
+    .catch((error) => res.status(500).json({ error }));
 };
 /*----------------------------Export de la fonction modifyuser pour la modification d'un utilisateur----------------------------*/
 
 exports.modifyUser = (req, res, next) => {
-  sequelize.User.updateOne(
-    { id: req.body.id },
-    )
-    .then(() => res.status(200).json({ message: "utilisateur modifié !" }))
-    .catch((error) => res.status(404).json({ error }));
+  const id = req.params.id;
+  const email = req.body.email;
+  sequelize.User.findOne({ where: { id:id } })
+  .then((user) => {
+    if (!user) {
+      return res.status(401).json({ error: "Utilisateur non trouvé !" });
+    }
+    bcrypt
+    .hash(req.body.password, 10)
+    .then((hash) => {
+      user.update({
+        email: email,
+        password: hash,
+      })
+      .then(() => res.status(201).json({ message: "Utilisateur modifié !" }))
+      .catch((error) => res.status(400).json({ error }));
+    })
+  })
+  .catch((error) => res.status(500).json({ error }));
 };
 /*----------------------------Export de la fonction deleteUser pour la suppression d'un utilisateur----------------------------*/
 
 exports.deleteUser = (req, res, next) => {
-  sequelize.User.findOne({ id: req.body.id })
+  console.log(req.body.id);
+  sequelize.User.findOne({ where: { id: req.params.id } })
     .then((user) => {
-      sequelize.User.deleteOne({ id: req.body.id })
-      .then(() => res.status(200).json({ message: "utilisateur supprimé !" }))
-      .catch((error) => res.status(404).json({ error }));
+      user.destroy()
+        .then(() => res.status(200).json({ message: "utilisateur supprimé !" }))
+        .catch((error) => res.status(404).json({ error }));
     })
-    .catch((error) => res.status(404).json({ error: 'prq' }));
+    .catch((error) => res.status(404).json({ error }));
 };
