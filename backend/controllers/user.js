@@ -21,7 +21,6 @@ exports.signup = async (req, res, next) => {
 /*----------------------------Export de la fonction login pour la connexion d'un utilisateur----------------------------*/
 
 exports.login = (req, res, next) => {
-  console.log(req.body.email);
   sequelize.User.findOne({ where: { email: req.body.email } })
     .then((user) => {
       /*Il pense que c'est toujours ilan@email.com*/
@@ -75,7 +74,6 @@ exports.modifyUser = (req, res, next) => {
 /*----------------------------Export de la fonction deleteUser pour la suppression d'un utilisateur----------------------------*/
 
 exports.deleteUser = (req, res, next) => {
-  console.log(req.body.id);
   sequelize.User.findOne({ where: { id: req.params.id } })
     .then((user) => {
       user.destroy()

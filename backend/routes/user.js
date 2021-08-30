@@ -8,8 +8,6 @@ router.put("/:id",userCtrl.modifyUser);
 router.delete("/:id", userCtrl.deleteUser);
 
 
-console.log('route');
-
 
 
 
