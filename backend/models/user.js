@@ -14,8 +14,18 @@ module.exports = (sequelize, DataTypes) => {
       email: {
         type: DataTypes.STRING,
         unique: true,
+        validate: {
+          is: /^[^@]+@[^@]+\.[^@]+$/,
+          notEmpty: true
+        },
       },
-      password: DataTypes.STRING,
+      password: {
+        type :DataTypes.STRING,
+        validate: {
+          is: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,  /*Minimum huit caractères, au moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial :*/
+          notEmpty: true
+        },
+      }
     },
     {
       sequelize,
