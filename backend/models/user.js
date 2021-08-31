@@ -1,15 +1,21 @@
-"use strict";
-const { Model } = require("sequelize");
+'use strict';
+const {
+  Model
+} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
     static associate(models) {
       // define association here
       models.User.hasMany(models.Message),
       models.User.hasMany(models.Comment)
-      
     }
-  }
-  User.init(
+  };
+   User.init(
     {
       email: {
         type: DataTypes.STRING,
@@ -22,7 +28,6 @@ module.exports = (sequelize, DataTypes) => {
       password: {
         type :DataTypes.STRING,
         validate: {
-          is: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,  /*Minimum huit caractères, au moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial :*/
           notEmpty: true
         },
       }

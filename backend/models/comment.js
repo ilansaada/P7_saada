@@ -16,11 +16,6 @@ module.exports = (sequelize, DataTypes) => {
           allowNull:false
         }
       })
-      models.Comment.belongsTo(models.Message,{
-        foreignKey:{
-          allowNull:false
-        }
-      })
     }
   };
   Comment.init({
