@@ -4,13 +4,13 @@ const messageCtrl = require('../controllers/message');
 const auth = require('../middleware/auth');
 /*const multer = require('../middleware/multer-config');*/
 
-router.post("/", auth, /*multer,*/ messageCtrl.createMessage);
+router.post("/", /*auth,/*multer,*/ messageCtrl.createMessage);
 
 router.put("/:id", auth, /*multer,*/ messageCtrl.modifyMessage);
 
 router.delete("/:id", auth, messageCtrl.deleteMessage);
 
-router.get("/", auth, messageCtrl.getAllMessage);
+router.get("/", /*auth,*/ messageCtrl.getAllMessage);
 
 router.get("/:id", auth, messageCtrl.getOneMessage);
 

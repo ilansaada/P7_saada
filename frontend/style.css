@@ -1,0 +1,51 @@
+body{
+    padding: 15px;
+    height: 100vh;
+    
+}
+p {
+    font-size: 25px;
+    line-height: 45px;
+    font-style: normal;
+    font-stretch: 90%;
+    font-weight: 501;
+}
+.formulaire{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #ffd6d6;
+    padding: 20px;
+    border-radius: 20px;
+    
+}
+.card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #ffd6d6;
+    padding: 20px;
+
+}
+#message{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #ffd6d6;
+    padding: 20px;
+
+}
+#messages{
+    
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+
+}
