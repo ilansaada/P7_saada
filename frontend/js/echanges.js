@@ -1,7 +1,7 @@
  const forum = document.querySelector(".forum");
     
 
-        fetch("http://localhost:3000/api/message/", {
+        /*fetch("http://localhost:3000/api/message/", {
             method: "GET",
             
         })
@@ -17,7 +17,7 @@
             forum.innerHTML = `<div class="alert alert-danger" role="alert">
             une erreur s'est produite : ${error}
             </div>`;
-        });
+        });*/
 
 
 

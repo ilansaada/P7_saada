@@ -1,8 +1,8 @@
 //appel à l'API fetch avec la méthode globale fetch() afin de récupérer des ressources à travers le réseau de manière asynchrone.
 /*-----------------------------------ecouter le btn envoyer formulaire-----------------------------------*/
 const btnEnvoyerFormulaire = document.querySelector("#envoyer_formulaire");
-btnEnvoyerFormulaire.addEventListener("click", (Element) => {
-  Element.preventDefault();
+btnEnvoyerFormulaire.addEventListener("click", (event) => {
+  event.preventDefault();
   //recuperation des valeurs du formulaire
   const valeursForm = {
     password: document.querySelector("#exampleInputPassword1").value,
@@ -21,14 +21,15 @@ btnEnvoyerFormulaire.addEventListener("click", (Element) => {
         let signupFormData = new FormData(signupForm);
         fetch("http://localhost:3000/api/user/signup", {
             method: "POST",
-            body: signupFormData,
+            body: JSON.stringify({signupFormData}),
+            headers: { "Content-Type" : "application/json"}
         })
         .then((data) => data.json())
         .then(() => {
             formulaire.innerHTML = `<div class="alert alert-success" role="alert">
             Compte bien créé !
             </div>    `;
-            window.location = "echanges.html";
+            /*window.location = "echanges.html";*/
         })
         .catch((error) => {
             formulaire.innerHTML = `<div class="alert alert-danger" role="alert">
@@ -36,5 +37,3 @@ btnEnvoyerFormulaire.addEventListener("click", (Element) => {
             </div>`;
         });
 });
-
-

@@ -6,13 +6,13 @@ const auth = require('../middleware/auth');
 
 router.post("/", /*auth,/*multer,*/ messageCtrl.createMessage);
 
-router.put("/:id", auth, /*multer,*/ messageCtrl.modifyMessage);
+router.put("/:id", /*auth,*/ /*multer,*/ messageCtrl.modifyMessage);
 
-router.delete("/:id", auth, messageCtrl.deleteMessage);
+router.delete("/:id", /*auth,*/  messageCtrl.deleteMessage);
 
 router.get("/", /*auth,*/ messageCtrl.getAllMessage);
 
-router.get("/:id", auth, messageCtrl.getOneMessage);
+router.get("/:id", /*auth,*/  messageCtrl.getOneMessage);
 
 
 
