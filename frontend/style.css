@@ -49,3 +49,38 @@ p {
     margin-top: 20px;
 
 }
+.profil{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #ffd6d6;
+    padding: 20px;
+}
+.message{
+    margin: 20px;
+}
+.newMessage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #ffd6d6;
+    padding: 40px;
+
+}
+.cardMessage{
+    border: solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #ffd6d6;
+    padding: 40px;
+
+}
+  
+  
