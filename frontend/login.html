@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Groupomania</title>
+  </head>
+  <body>
+    <header>
+      <!--Logo-->
+      <div class="text-center">
+        <img src="image/icon-above-font_opt.png" class="img-fluid" alt="Logo Groupomania">
+      </div>
+      
+    </header>
+    <main>
+      <p class="text-center">Bienvenue sur votre nouveau réseau social d'entreprise</p>
+      <p class="text-center">Connectez - Vous !</p>
+      <div class="formulaire">
+        <form id="signup">
+          
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Adresse Email</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Mot de passe</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+          </div>
+          <div id="alert_messages"></div>
+          <button type="submit" id="envoyer_formulaire" class="btn btn-primary">Inscription</button>
+        </form>
+      </div>
+      <p class="text-center">Vous n'avez pas encore de compte ? <a href="signup.html">Rejoignez - vous !</a></p>
+      
+      
+      <script src="js/login.js"></script>
+    </main>
+    
+  </body>
+</html>
