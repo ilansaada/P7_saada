@@ -9,8 +9,8 @@ const structurinformationsClient = `
     <div class="infos">
         <h1>Mon profil: ${informationClient}</h1>
         <input  placeholder="nouvel email">  </input>
-        <button class="modify">Modifier</button>
-        <button class="delete">Suppression</button> 
+        <button id="updateEmail">Modifier</button>
+        <button class="deleteEmail">Suppression</button> 
     </div>`;
 const positionInformationClient = document.querySelector(".profil");
 positionInformationClient.insertAdjacentHTML(
@@ -18,11 +18,22 @@ positionInformationClient.insertAdjacentHTML(
   structurinformationsClient
 );
 
-//updateProfile.addEventListener(('click') => {
-//fetch
-//fetch('http://localhost:3000/api/user/${userId}')//update
-// body : {email: la valeur de mon input email}
-//});
+/*const updateEmail = document.querySelector("#updateEmail");
+updateEmail.addEventListener("click", (event) => {
+  event.preventDefault();
+  fetch("http://localhost:3000/api/user"/*mettre l'id, {
+    method: "PUT",
+    body: JSON.stringify({email: imput.value}),
+    headers: { "Content-Type" : "application/json"}
+})    
 
-//deleteUser.addEventListener()
-// un bouton "supprimer le compte" >>> en rouge
+
+const deleteEmail = document.querySelector("#deleteEmail");
+deleteEmail.addEventListener("click", (event) => {
+  event.preventDefault();
+  fetch("http://localhost:3000/api/user"/*mettre l'id, {
+    method: "DELETE",
+    body: JSON.stringify({email: imput.value}),
+    headers: { "Content-Type" : "application/json"}
+})   
+*/

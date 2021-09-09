@@ -29,7 +29,28 @@ fetch("http://localhost:3000/api/message")
       <p>l'erreur suivante a été remontée : ${error}</p>
     </div>`;
   });
+/*Ajouter un message
+  const btnAddMessage = document.querySelector(".addMessage");
+  btnAddMessage.addEventListener("click", (event) => {
+  event.preventDefault();
 
-  /*const btnDeleteMessage = document.querySelector(".deleteMessage");
-  btnDeleteMessage.addEventListener("click", (event) => {
-  event.preventDefault();*/
+
+
+}*/
+
+/*Ajouter un commentaire
+  const btnAddComment = document.querySelector(".addComment");
+  btnAddComment.addEventListener("click", (event) => {
+  event.preventDefault();
+
+
+
+}*/
+/*Supprimer un message
+  const BtnDeleteMessage = document.querySelector(".deleteMessage");
+  BtnDeleteMessage.addEventListener("click", (event) => {
+  event.preventDefault();
+
+
+
+}*/
