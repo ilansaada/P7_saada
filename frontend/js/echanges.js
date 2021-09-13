@@ -54,3 +54,15 @@ fetch("http://localhost:3000/api/message")
 
 
 }*/
+/*Btn de deconnexion*/
+const btnDeconnexion = document.querySelector(".Deconnexion");
+btnDeconnexion.addEventListener("click", (event) => {
+  event.preventDefault();
+  function SuppSessionStorage(key){
+    sessionStorage.removeItem(key)
+}
+SuppSessionStorage("user");
+window.location = "login.html";
+
+    
+});

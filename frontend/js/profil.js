@@ -3,7 +3,7 @@
 //> suppression du compte DELETE /user/id
 // > modifier ton utilisateur PUT /user/id
 const informationClient = JSON.parse(
-  sessionStorage.getItem("valeursForm")
+  sessionStorage.getItem("user")
 );
 const structurinformationsClient = `
     <div class="infos">
@@ -37,3 +37,15 @@ deleteEmail.addEventListener("click", (event) => {
     headers: { "Content-Type" : "application/json"}
 })   
 */
+/*Btn de deconnexion*/
+const btnDeconnexion = document.querySelector(".Deconnexion");
+btnDeconnexion.addEventListener("click", (event) => {
+  event.preventDefault();
+  function SuppSessionStorage(key){
+    sessionStorage.removeItem(key)
+}
+SuppSessionStorage("user");
+window.location = "login.html";
+
+    
+});

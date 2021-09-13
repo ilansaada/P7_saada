@@ -5,21 +5,21 @@ const btnEnvoyerFormulaire = document.querySelector("#envoyer_formulaire");
 btnEnvoyerFormulaire.addEventListener("click", (event) => {
   event.preventDefault();
   //recuperation des valeurs du formulaire
-  const valeursForm = {
+  const user = {
     password: document.querySelector("#exampleInputPassword1").value,
     email: document.querySelector("#exampleInputEmail1").value,
     
 };
-  console.log(valeursForm)
+  console.log(user)
   
-  sessionStorage.setItem("valeursForm", JSON.stringify(valeursForm));
+  sessionStorage.setItem("user", JSON.stringify(user));
     
 const formulaire = document.querySelector(".formulaire");
 const alertMessagesContainer = document.querySelector('#alert_messages');
 
     fetch("http://localhost:3000/api/user/login", {
         method: "POST",
-        body: JSON.stringify({email: valeursForm.email, password: valeursForm.password}),
+        body: JSON.stringify({email: user.email, password: user.password}),
         headers: { "Content-Type" : "application/json"}
     })
     .then((data) => data.json())
@@ -45,6 +45,6 @@ const alertMessagesContainer = document.querySelector('#alert_messages');
     })
     .catch((error) => {
         formulaire.innerHTML = `<div class="alert alert-danger" role="alert">
-        une erreur s'est produite : ${JSON.stringify(error.message)}
+        une erreur s'est produite : ${JSON.stringify('email/mt de passe incorrect')}
         </div>`;
     })})
