@@ -42,6 +42,7 @@ exports.login = (req, res, next) => {
               "RANDOM_TOKEN_SECRET",
               { expiresIn: "24h" }
             ),
+            email: user.email
           });
         })
         .catch((error) => res.status(500).json({ error }));
@@ -53,23 +54,18 @@ exports.login = (req, res, next) => {
 exports.modifyUser = (req, res, next) => {
   const id = req.params.id;
   const email = req.body.email;
-  sequelize.User.findOne({ where: { id:id } })
-  .then((user) => {
-    if (!user) {
-      return res.status(401).json({ error: "Utilisateur non trouvé !" });
-    }
-    bcrypt
-    .hash(req.body.password, 10)
-    .then((hash) => {
-      user.update({
-        email: email,
-        password: hash,
+  sequelize.User.findOne({where: {id: id}})
+      .then((user) => {
+          if (!user) {
+              return res.status(401).json({error: "Utilisateur non trouvé !"});
+          }
+          user.update({
+              email: email,
+          })
+              .then(() => res.status(201).json({message: "Utilisateur modifié !"}))
+              .catch((error) => res.status(400).json({error}));
       })
-      .then(() => res.status(201).json({ message: "Utilisateur modifié !" }))
-      .catch((error) => res.status(400).json({ error }));
-    })
-  })
-  .catch((error) => res.status(500).json({ error }));
+      .catch((error) => res.status(500).json({error}));
 };
 /*----------------------------Export de la fonction deleteUser pour la suppression d'un utilisateur----------------------------*/
 

@@ -29,6 +29,10 @@ fetch("http://localhost:3000/api/message")
       <p>l'erreur suivante a été remontée : ${error}</p>
     </div>`;
   });
+
+
+
+  
 /*Ajouter un message
   const btnAddMessage = document.querySelector(".addMessage");
   btnAddMessage.addEventListener("click", (event) => {
