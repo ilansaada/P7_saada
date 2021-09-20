@@ -11,14 +11,14 @@ fetch("http://localhost:3000/api/message")
             <div class="message">
                 <h2>Titre: ${message.title}</h4>
                 <p>Corps du message: ${message.content}</p>
-                <div class="btn">
-                    <button class="deleteMessage">supprimer votre message</button>
-                </div>
+                <button class="deleteMessage">supprimer votre message</button>
             </div>
             <div class="commentaires">
                 <input  placeholder=" commentaire ">  </input>
                 <button class="addComment">Ajouter un commentaire</button>
-            </div>
+                <button class="deleteComment">supprimer votre commentaire</button>
+
+                </div>
         </div>
     </div>
           `;
@@ -51,13 +51,27 @@ fetch("http://localhost:3000/api/message")
 
 }*/
 /*Supprimer un message
+const title = document.querySelector("#title");
+const content = document.querySelector("#content");
+
   const BtnDeleteMessage = document.querySelector(".deleteMessage");
   BtnDeleteMessage.addEventListener("click", (event) => {
-  event.preventDefault();
-
-
-
-}*/
+    event.preventDefault();
+    fetch(`http://localhost:3000/api/user/${informationClient.userId}`, {
+        method: "DELETE",
+        body: JSON.stringify({title: title.value},{content: content.value}),
+        headers: {"Content-Type": "application/json"}
+    })
+        .then(() => {
+            window.location = "signup.html";
+        })
+        .catch((error) => {
+            alertMessagesContainer.innerHTML = `<div class="alert alert-danger" role="alert">
+                                                une erreur s'est produite : ${JSON.stringify(error.message)}
+                                            </div>`;
+        });
+});
+*/
 /*Btn de deconnexion*/
 const btnDeconnexion = document.querySelector(".Deconnexion");
 btnDeconnexion.addEventListener("click", (event) => {
