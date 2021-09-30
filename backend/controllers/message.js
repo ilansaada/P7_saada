@@ -59,7 +59,7 @@ exports.getOneMessage = (req, res, next) => {
 
 exports.getAllMessage = (req, res, next) => {
   sequelize.Message.findAll({
-    attributes: ["title", "content", "userId"],
+    attributes: ["id","title", "content", "userId"],
   })
     .then((message) => {
       res.status(200).json(message);
