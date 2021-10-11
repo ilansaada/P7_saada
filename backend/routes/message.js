@@ -8,7 +8,7 @@ router.post("/", /*auth,/*multer,*/ messageCtrl.createMessage);
 
 router.put("/:id", /*auth,*/ /*multer,*/ messageCtrl.modifyMessage);
 
-router.delete("/:id", /*auth,*/  messageCtrl.deleteMessage);
+router.delete("/:id", /*à retirer auth,*/  messageCtrl.deleteMessage);
 
 router.get("/", /*auth,*/ messageCtrl.getAllMessage);
 

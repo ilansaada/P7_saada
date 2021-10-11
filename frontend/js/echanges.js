@@ -1,13 +1,16 @@
+const UserId = JSON.parse(sessionStorage.getItem("user")).userId;
+console.log(UserId)
+const messageId = document.querySelector('# message.id')
 function deleteMessage(messageId){
   fetch(`http://localhost:3000/api/message/${messageId}`, {
     method: "DELETE",
     body: JSON.stringify(
-      {id:message.id}
+      {id:messageId}
       ),
     headers: { "Content-Type": "application/json" },
   })
     .then(() => {
-      window.location = "echanges.html";
+     
     })
     .catch((error) => {
       alertMessagesContainer.innerHTML = `<div class="alert alert-danger" role="alert">
@@ -42,9 +45,10 @@ fetch("http://localhost:3000/api/message")
         </div>
     </div>`;
       const BtnDeleteMessage = document.querySelector(".deleteMessage");
+      console.log(BtnDeleteMessage)
       BtnDeleteMessage.addEventListener("click", (event) => {
         event.preventDefault();
-        return deleteMessage
+        deleteMessage()
         });
     }
   })
@@ -54,11 +58,29 @@ fetch("http://localhost:3000/api/message")
     </div>`;
   });
 
-/*Ajouter un message
+/*Ajouter un message*/
   const btnAddMessage = document.querySelector(".addMessage");
   btnAddMessage.addEventListener("click", (event) => {
   event.preventDefault();
-}*/
+  const title = document.querySelector("#title")
+  const content = document.querySelector("#content")
+
+  fetch(`http://localhost:3000/api/message/`, {
+    method: "POST",
+    body: JSON.stringify(
+      {
+      UserId:UserId,
+      title: title.value,
+      content: content.value}
+      ),
+    headers: { "Content-Type": "application/json" },
+  })
+    .then(() => {
+    })
+    .catch((error) => {
+      error
+    });
+});
 
 /*Ajouter un commentaire
   const btnAddComment = document.querySelector(".addComment");

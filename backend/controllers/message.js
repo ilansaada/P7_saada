@@ -7,7 +7,7 @@ const sequelize = require("../models");
 
 exports.createMessage = (req, res, next) => {
   const message = {
-    UserId: req.body.userId,
+    UserId: req.body.UserId,
     content: req.body.content,
     title: req.body.title,
   };

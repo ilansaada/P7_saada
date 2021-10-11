@@ -1,4 +1,4 @@
-/*----------------------------------------logique metier---------------------------------------*/
+/*----------------------------------------la logique metier---------------------------------------*/
 const Comment = require("../models/comment");
 const fs = require("fs");
 const sequelize = require("../models");
