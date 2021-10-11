@@ -1,6 +1,5 @@
 const UserId = JSON.parse(sessionStorage.getItem("user")).userId;
 console.log(UserId)
-const messageId = document.querySelector('# message.id')
 function deleteMessage(messageId){
   fetch(`http://localhost:3000/api/message/${messageId}`, {
     method: "DELETE",
