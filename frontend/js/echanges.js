@@ -1,9 +1,14 @@
 const UserId = JSON.parse(sessionStorage.getItem("user")).userId;
+const header = {
+  'Accept': 'application/json',
+  'Content-Type':'application/json',
+  'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("user")).token,
+}
 /*-------------------------------------------fonction qui supprime un message--------------------------------*/
 function deleteMessage(messageId) {
   fetch(`http://localhost:3000/api/message/${messageId}`, {
     method: "DELETE",
-    headers: { "Content-Type": "application/json" },
+    headers: header,
   })
     .then(() => {
       location.reload();
@@ -18,7 +23,10 @@ function deleteMessage(messageId) {
 }
 /*----------------------------------------afficher les messages---------------------------------------------*/
 const card = document.querySelector(".card");
-fetch("http://localhost:3000/api/message")
+fetch("http://localhost:3000/api/message",
+{headers:header},
+)
+
   .then((data) => data.json())
   .then((jsonListMessage) => {
     for (let jsonMessage of jsonListMessage) {
@@ -70,13 +78,15 @@ btnAddMessage.addEventListener("click", (event) => {
       title: title.value,
       content: content.value,
     }),
-    headers: { "Content-Type": "application/json" },
+    headers: header,
   })
     .then(() => {
       location.reload();
     })
     .catch((error) => {
-      error;
+      card.innerHTML = `<div class = container_error>
+      <p>l'erreur suivante a été remontée : ${error}</p>
+    </div>`;
     });
 });
 
@@ -102,7 +112,9 @@ btnAddMessage.addEventListener("click", (event) => {
       location.reload();
     })
     .catch((error) => {
-      error
+      card.innerHTML = `<div class = container_error>
+      <p>l'erreur suivante a été remontée : ${error}</p>
+    </div>`;
     });
 });*/
 
