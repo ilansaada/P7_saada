@@ -34,9 +34,9 @@ fetch("http://localhost:3000/api/message",
       card.innerHTML += `
    
     <div class= "allMessage">
-        <div class="cardMessage">
+    <div class="cardMessage">
             <div class="message" id="${message.id}">
-                <h2>Titre: ${message.title}</h4>
+            <a href="posts.html?id=${message.id}"><h2>Titre: ${message.title}</h2></a>
                 <p>Corps du message: ${message.content}</p>
                 <button class="deleteMessage">supprimer votre message</button>
             </div>
