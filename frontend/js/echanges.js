@@ -36,17 +36,11 @@ fetch("http://localhost:3000/api/message",
     <div class= "allMessage">
     <div class="cardMessage">
             <div class="message" id="${message.id}">
-            <a href="posts.html?id=${message.id}"><h2>Titre: ${message.title}</h2></a>
-                <p>Corps du message: ${message.content}</p>
+            <a href="posts.html?id=${message.id}"><h2>${message.title}</h2></a>
+                <p>${message.content}</p>
                 <button class="deleteMessage">supprimer votre message</button>
             </div>
-            <div class="commentaires">
-                <input  class="comment" placeholder="commentaire">
-                <button class="addComment">Ajouter un commentaire</button>
-                <button class="deleteComment">supprimer votre commentaire</button>
-
-                </div>
-        </div>
+            </div>
     </div>`;
       /*----------------------------------------supprimer les messages---------------------------------------------*/
 
@@ -90,33 +84,6 @@ btnAddMessage.addEventListener("click", (event) => {
     });
 });
 
-/*Ajouter un commentaire
-  const btnAddComment = recuperer le btn ajout d'un commentaire ;
-  btnAddComment.addEventListener("click", (event) => {
-  event.preventDefault();
-  /*
-  récuperer la valeur de l'input 
-  const comment = document.querySelector(".comment")
-
-  fetch(`http://localhost:3000/api/comment/`, {
-    method: "POST",
-    body: JSON.stringify(
-      {
-      UserId:UserId,
-      comment: comment.value
-      }
-    ),
-    headers: { "Content-Type": "application/json" },
-  })
-    .then(() => {
-      location.reload();
-    })
-    .catch((error) => {
-      card.innerHTML = `<div class = container_error>
-      <p>l'erreur suivante a été remontée : ${error}</p>
-    </div>`;
-    });
-});*/
 
 /*-------------------------------------------------Btn de deconnexion-------------------------------------*/
 const btnDeconnexion = document.querySelector(".Deconnexion");

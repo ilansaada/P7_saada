@@ -58,9 +58,7 @@ exports.getOneComment = (req, res, next) => {
 /*----------------------------Export de la fonction getAllComment pour la récupération de tout les commentaires----------------------------*/
 
 exports.getAllComment = (req, res, next) => {
-  sequelize.Comment.findAll({
-    attributes: ["title", "content", "userId"],
-  })
+  sequelize.Comment.findAll()
     .then((comment) => {
       res.status(200).json(comment);
     })

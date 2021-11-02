@@ -1,9 +1,30 @@
-//récupération de la chaine de requette dans l'url
+/*-------------------------------------------fonction qui supprime un commentaire--------------------------------*/
+function deleteComment(commentId) {
+  fetch(`http://localhost:3000/api/comment/${commentId}`, {
+    method: "DELETE",
+    headers: {'Accept': 'application/json',
+    'Content-Type':'application/json',
+    'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("user")).token,},
+  })
+    .then(() => {
+      location.reload();
+    })
+    .catch((error) => {
+      alertMessagesContainer.innerHTML = `<div class="alert alert-danger" role="alert">
+                                          une erreur s'est produite : ${JSON.stringify(
+                                            error.message
+                                          )}
+                                      </div>`;
+    });
+}
+
+//------------------------------------récupération de la chaine de requette dans l'url pour récup un message-------------------------------------------
 const queryString_url_id = window.location.search;
 const urlSearchParams = new URLSearchParams(queryString_url_id);
+const card = document.querySelector(".card")
 /*----------------------------------Afin d'extraire l'id----------------------------------*/
 const id = urlSearchParams.get("id");
-/*----------------------------------Apppel avec l'id en paramètre----------------------------------*/
+/*----------------------------------récuperation du message avec l'id en paramètre----------------------------------*/
 fetch(`http://localhost:3000/api/message/${id}`, 
 {
     method: "GET",
@@ -16,22 +37,21 @@ fetch(`http://localhost:3000/api/message/${id}`,
   .then((message) => {
     document.querySelector(".container").innerHTML += `<div class="cardMessage">
                 <div class="details">
-                    <h4>Titre du message: ${message.title}</h4>
+                    <h2>${message.title}</h2>
                     <div class="description">
-                        <p>Contenu du Message: ${message.content}</p>
+                        <p>${message.content}</p>
                     </div>
                 </div>
             </div>`;
 
-    //selection du btn
-    /*Ajouter un commentaire*/
+    //-----------------------------------------Ajouter un commentaire-----------------------------------------
   const btnAddComment = document.querySelector(".btnAddComment")
   btnAddComment.addEventListener("click", (event) => {
   event.preventDefault();
   
   /*récuperer la valeur de l'input*/ 
   const addComment = document.querySelector(".addComment")
-const UserId = JSON.parse(sessionStorage.getItem("user")).userId;
+  const UserId = JSON.parse(sessionStorage.getItem("user")).userId;
 
   fetch(`http://localhost:3000/api/comment/`, {
     method: "POST",
@@ -46,7 +66,7 @@ const UserId = JSON.parse(sessionStorage.getItem("user")).userId;
     'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("user")).token,},
   })
     .then(() => {
-      //location.reload();
+      location.reload();
     })
     .catch((error) => {
       card.innerHTML = `<div class = container_error>
@@ -55,7 +75,8 @@ const UserId = JSON.parse(sessionStorage.getItem("user")).userId;
     });
 });
 });
-fetch(`http://localhost:3000/api/message/${id}`, 
+//---------------------------------------Afficher les commentaires --------------------------------------------------------------------
+fetch(`http://localhost:3000/api/comment/`, 
 {headers:  
   {
     'Accept': 'application/json',
@@ -64,16 +85,35 @@ fetch(`http://localhost:3000/api/message/${id}`,
   }
 })
 
-  .then((data) => data.json())
-  .then((jsonListComment) => {
-    for (let jsonComment of jsonListComment) {
-      let comment = new Comment(jsonComment);
-      card.innerHTML += `
-   
-    <div class= "allComment">
-    <div class="cardComment">
-            <div class="comment" id="${comment.id}">
-            <h2>Titre: ${comment.title}</h2>
-                <p>Corps du commentaire: ${comment.content}</p>
-                <button class="deleteComment"> Supprimer votre commentaire</button>
-            </div>` }})
+.then((data) => data.json())
+.then((jsonListComment) => {
+  for (let jsonComment of jsonListComment) {
+    let comment = new Comment(jsonComment);
+    card.innerHTML += `
+ 
+  <div class= "allComments">
+    <div class="cardComments">
+      <div class="comment" id="${comment.id}">
+        <p>${comment.content}</p>
+        <button class="deleteComment">supprimer votre comment</button>
+      </div>
+    </div>
+  </div>`}
+ //----------------------Supprimer un commentaire---------------
+ const BtnDeleteComment = document.querySelector(".deleteComment");
+ BtnDeleteComment.addEventListener("click", (event) => {
+   event.preventDefault();
+   /*récuperation de l'element séléctionné*/
+   deleteComment(BtnDeleteComment.parentNode.getAttribute("id"));
+ });
+})
+.catch(() => {
+ 
+    card.innerHTML = `<div class = container_error>
+    <p>Pas de commentaire pour l'instant n'hésitez pas à etre le premier:</p>
+  </div>`;
+  });
+
+  
+  
+ 
