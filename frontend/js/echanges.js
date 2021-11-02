@@ -45,12 +45,20 @@ fetch("http://localhost:3000/api/message",
       /*----------------------------------------supprimer les messages---------------------------------------------*/
 
       const BtnDeleteMessage = document.querySelector(".deleteMessage");
-      BtnDeleteMessage.addEventListener("click", (event) => {
+      if (UserId == message.userId) {
+        //  block of code to be executed if the condition is true
+       BtnDeleteMessage.addEventListener("click", (event) => {
         event.preventDefault();
         /*récuperation de l'element séléctionné*/
         deleteMessage(BtnDeleteMessage.parentNode.getAttribute("id"));
       });
-    }
+    }else{
+      BtnDeleteMessage.addEventListener("click", (event) => {
+       window.alert("vous n'etes pas autorisé à supprimer ce message"); 
+      }
+      
+      )}}
+    
   })
   .catch((error) => {
     card.innerHTML = `<div class = container_error>
