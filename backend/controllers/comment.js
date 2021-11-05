@@ -3,7 +3,7 @@ const Comment = require("../models/comment");
 const fs = require("fs");
 const sequelize = require("../models");
 
-/*----------------------------Export de la fonction createMessage pour la création d'un commentaire----------------------------*/
+/*----------------------------Export la fonction createMessage pour la création d'un commentaire----------------------------*/
 
 exports.createComment = (req, res, next) => {
   const comment = {

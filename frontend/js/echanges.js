@@ -45,7 +45,7 @@ fetch("http://localhost:3000/api/message",
       /*----------------------------------------supprimer les messages---------------------------------------------*/
 
       const BtnDeleteMessage = document.querySelector(".deleteMessage");
-      if (UserId == message.userId) {
+      if (UserId == message.userId || UserId == 1) {
         //  block of code to be executed if the condition is true
        BtnDeleteMessage.addEventListener("click", (event) => {
         event.preventDefault();
